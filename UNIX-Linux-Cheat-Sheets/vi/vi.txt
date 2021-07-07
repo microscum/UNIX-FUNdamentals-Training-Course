@@ -1,0 +1,97 @@
+TITLE    : VI Text Editor Reference Sheet
+OS LEVEL : None
+DATE     : 06/05/99
+VERSION  : 1.0
+
+----------------------------------------------------------------------------
+
+Entering vi
+-----------
+
+vi file        Open file for editing.
+vi +n file     Open file and go to line n.
+vi -r file     Recover a failed editing session.
+
+Movement
+--------
+
+            backward    forward
+ character     h           l
+      line     k           j
+      word     b           w
+  sentence     (           )
+ paragraph     {           }
+1/2 screen   CTRL-U     CTRL-D
+  1 screen   CTRL-B     CTRL-F
+
+The above commands can be prefaced by a number to indicate a desired repetition. 
+For example, the command 5w moves the cursor five words to the right and the 
+command 10k moves the cursor ten lines up.
+0      Go to beginning of the current line.
+$      Go to end of the current line.
+nG     Go to line n.  (Default = last line)
+
+Inserting Text
+--------------
+
+i               inserts text before the cursor.
+a               appends text after the cursor.
+A               appends text at the end of a line.
+o               opens a new (blank) line below the cursor and enters insert mode.
+O               opens a new (blank) line at the cursor and enters insert mode.
+:r filename     inserts the contents of filename at the current line.
+
+Pressing <ESC> will exit insert mode. 
+
+Deleting Text
+-------------
+
+x      deletes the character at the cursor.
+dw     deletes the current word.
+dd     deletes the current line.
+
+As with the movement commands, these commands can be prefaced by a number to 
+indicate a desired repetition. The command 3dw deletes the next three words, for 
+example.
+
+Other Commands
+--------------
+
+<CTRL-L>            redraws the screen.
+.                   redoes the last command.
+u                   undoes the last command that changed the buffer.
+/string             searches for string.
+n                   searches for the next occurrence of string.
+N                   searches for the previous occurrence of string.
+:s/from/to          replaces to for one from on one line.
+:s/from/to/g        replaces to for every from on one line.
+:%s/from/to/g       replaces to for every from on every line.
+nY                  yanks a copy of the next n lines. (Default = 1)
+P                   puts yanked or deleted line(s) at the current line.
+p                   puts yanked or deleted line(s) after the current line.
+rX                  replaces character at cursor with X
+R                   begin replacing text at cursor (press <ESC> when finished).
+
+Saving and Exiting vi
+---------------------
+
+The following is a list of saving and exiting commands. Each has its advantages 
+and disadvantages. Decide which ones appeal to you and use them. 
+:w     save (don't quit)  [:w filename saves to filename]
+:q     save and quit
+:q!    quit (don't save)
+:x     save if a change has been made, quit regardless
+ZZ     same as :x
+
+Some vi Settings
+----------------
+
+:set autoindent       Automatically indent at the same level as the line above.
+:set number           Display line numbers.
+:set showmode         Indicate if vi is in insert mode.
+:set wrapmargin=n     Automatically wrap word in last n columns.
+:set wrapscan         Searches reaching the bottom continue from the top.
+
+To unset any of these options, use the prefix no. For instance, the command :set 
+nowrapscan will turn off the wrapscan feature. To make settings permanent, place 
+them in the file .exrc in your home directory.
